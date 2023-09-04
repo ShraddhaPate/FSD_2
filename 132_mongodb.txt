@@ -1,0 +1,480 @@
+
+test> db
+test
+test> use Shubhodeep
+switched to db Shubhodeep
+Shubhodeep> db.Shubhodeep.find()
+
+Shubhodeep> db.Shubhodeep.find
+[Function: find] AsyncFunction {
+  returnsPromise: true,
+  apiVersions: [ 1, Infinity ],
+  returnType: 'Cursor',
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  topologies: [ 'ReplSet', 'Sharded', 'LoadBalanced', 'Standalone' ],
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+Shubhodeep> db.Shubhodeep.find()
+
+Shubhodeep> db.Shubhodeep.insertMany([{name: "abc" , age: 44}, {name:"xyz" , age:23} , {name:pqr , age: 21}]);
+ReferenceError: pqr is not defined
+Shubhodeep> db.Shubhodeep.insertMany([{name: "abc" , age: 44}, {name:"xyz" , age:23} , {name:"pqr" , age: 21}]);
+Uncaught:
+MongoBulkWriteError: db already exists with different case already have: [shubhodeep] trying to create [Shubhodeep]
+Result: BulkWriteResult {
+  insertedCount: 0,
+  matchedCount: 0,
+  modifiedCount: 0,
+  deletedCount: 0,
+  upsertedCount: 0,
+  upsertedIds: {},
+  insertedIds: {
+    '0': ObjectId("64e57df36864ece59ff250fe"),
+    '1': ObjectId("64e57df36864ece59ff250ff"),
+    '2': ObjectId("64e57df36864ece59ff25100")
+  }
+}
+Write Errors: [
+  WriteError {
+    err: {
+      index: 0,
+      code: 13297,
+      errmsg: 'db already exists with different case already have: [shubhodeep] trying to create [Shubhodeep]',
+      errInfo: undefined,
+      op: {
+        name: 'abc',
+        age: 44,
+        _id: ObjectId("64e57df36864ece59ff250fe")
+      }
+    }
+  }
+]
+Shubhodeep> exit
+
+C:\Users\LJENG>mongosh
+Current Mongosh Log ID: 64e57e0d6aeedc269ddec6c3
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.3
+Using MongoDB:          6.0.8
+Using Mongosh:          1.10.3
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-08-17T16:45:31.689+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+Shehnaz     144.00 KiB
+admin        40.00 KiB
+config       72.00 KiB
+local        72.00 KiB
+shubhodeep   72.00 KiB
+test> use shubhodeep
+switched to db shubhodeep
+shubhodeep> db.shubhodeep.find()
+[
+  { _id: ObjectId("64e438c83137af98397e5241"), name: 'abc', age: 21 },
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'def', age: 19 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5244"), name: 'lmn', age: 21 },
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e442608aff147abdcd0c1f"), name: 'baka', age: 20 },
+  { _id: ObjectId("64e442648aff147abdcd0c20"), name: 'baka', age: 21 },
+  { _id: ObjectId("64e442678aff147abdcd0c21"), name: 'baka', age: 22 },
+  { _id: ObjectId("64e4426a8aff147abdcd0c22"), name: 'baka', age: 23 }
+]
+shubhodeep> db,shubhodeep.insertOne({name:"abc"},{name:"pqr"});
+ReferenceError: shubhodeep is not defined
+shubhodeep> db.shubhodeep.insertOne({name:"abc"},{name:"pqr"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e57e656aeedc269ddec6c4")
+}
+shubhodeep> db.shubhodeep.updateOne({name:"abc"},{$set :{name:"pqr"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shubhodeep> db.shubhodeep.updateOne({name:"def", age:19},{$set :{name:"xyz", age:20}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shubhodeep> db.shubhodeep.find()
+[
+  { _id: ObjectId("64e438c83137af98397e5241"), name: 'pqr', age: 21 },
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5244"), name: 'lmn', age: 21 },
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e442608aff147abdcd0c1f"), name: 'baka', age: 20 },
+  { _id: ObjectId("64e442648aff147abdcd0c20"), name: 'baka', age: 21 },
+  { _id: ObjectId("64e442678aff147abdcd0c21"), name: 'baka', age: 22 },
+  { _id: ObjectId("64e4426a8aff147abdcd0c22"), name: 'baka', age: 23 },
+  { _id: ObjectId("64e57e656aeedc269ddec6c4"), name: 'abc' }
+]
+shubhodeep> db.shubhodeep.updateOne({name:"ghi"} , {$set:{age:20}} , {upsert:true})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+shubhodeep> db.shubhodeep.find()
+[
+  { _id: ObjectId("64e438c83137af98397e5241"), name: 'pqr', age: 21 },
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5244"), name: 'lmn', age: 21 },
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e442608aff147abdcd0c1f"), name: 'baka', age: 20 },
+  { _id: ObjectId("64e442648aff147abdcd0c20"), name: 'baka', age: 21 },
+  { _id: ObjectId("64e442678aff147abdcd0c21"), name: 'baka', age: 22 },
+  { _id: ObjectId("64e4426a8aff147abdcd0c22"), name: 'baka', age: 23 },
+  { _id: ObjectId("64e57e656aeedc269ddec6c4"), name: 'abc' }
+]
+shubhodeep> db.shubhodeep.updateOne({name:"age"} , {$set:{age:20}} , {upsert:true})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64e58041a45a4deb61e902f3"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+shubhodeep> db.shubhodeep.find()
+[
+  { _id: ObjectId("64e438c83137af98397e5241"), name: 'pqr', age: 21 },
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5244"), name: 'lmn', age: 21 },
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e442608aff147abdcd0c1f"), name: 'baka', age: 20 },
+  { _id: ObjectId("64e442648aff147abdcd0c20"), name: 'baka', age: 21 },
+  { _id: ObjectId("64e442678aff147abdcd0c21"), name: 'baka', age: 22 },
+  { _id: ObjectId("64e4426a8aff147abdcd0c22"), name: 'baka', age: 23 },
+  { _id: ObjectId("64e57e656aeedc269ddec6c4"), name: 'abc' },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'age', age: 20 }
+]
+shubhodeep> db.shubhodeep.updateOne({name:"age"} , {$set:{name:"abc"}} , {upsert:true})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shubhodeep> db.shubhodeep.find()
+[
+  { _id: ObjectId("64e438c83137af98397e5241"), name: 'pqr', age: 21 },
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5244"), name: 'lmn', age: 21 },
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e442608aff147abdcd0c1f"), name: 'baka', age: 20 },
+  { _id: ObjectId("64e442648aff147abdcd0c20"), name: 'baka', age: 21 },
+  { _id: ObjectId("64e442678aff147abdcd0c21"), name: 'baka', age: 22 },
+  { _id: ObjectId("64e4426a8aff147abdcd0c22"), name: 'baka', age: 23 },
+  { _id: ObjectId("64e57e656aeedc269ddec6c4"), name: 'abc' },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc', age: 20 }
+]
+shubhodeep> db.shubhodeep.deleteOne({name:"baka"})
+{ acknowledged: true, deletedCount: 1 }
+shubhodeep> db.shubhodeep.deleteMany({name:"baka"}).limit(1);
+TypeError: db.shubhodeep ... aka"}).limit is not a function
+shubhodeep> db.shubhodeep.find()
+[
+  { _id: ObjectId("64e438c83137af98397e5241"), name: 'pqr', age: 21 },
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5244"), name: 'lmn', age: 21 },
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e57e656aeedc269ddec6c4"), name: 'abc' },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc', age: 20 }
+]
+shubhodeep> db.shubhodeep.find({name : "def" , baka : "True"})
+[
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  }
+]
+shubhodeep> db.shubhodeep.find({$and:{name : "def" , baka : "True"}})
+MongoServerError: $and must be an array
+shubhodeep> db.shubhodeep.find({$and:[{name : "def" , baka : "True"}]})
+[
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  }
+]
+shubhodeep> db.shubhodeep.find({$and:[{name : "def"} , {baka : "True"}]})
+[
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  }
+]
+shubhodeep> db.shubhodeep.find({$or:[{name : "def"} , {baka : "True"}]})
+[
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  }
+]
+shubhodeep> db.shubhodeep.find({$or:[{name : "def , {baka : "True"}]})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:49)
+
+> 1 | db.shubhodeep.find({$or:[{name : "def , {baka : "True"}]})
+    |                                                  ^
+  2 |
+
+shubhodeep> db.shubhodeep.find({$or:[{name : "def" , baka : "True"}]})
+[
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  }
+]
+shubhodeep> db.shubhodeep.find()
+[
+  { _id: ObjectId("64e438c83137af98397e5241"), name: 'pqr', age: 21 },
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5244"), name: 'lmn', age: 21 },
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e57e656aeedc269ddec6c4"), name: 'abc' },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc', age: 20 }
+]
+shubhodeep> db.shubhodeep.find({$or:[{name : "pqr" , age : 20}]})
+
+shubhodeep> db.shubhodeep.find({$nor:[{name : "pqr" , age : 20}]})
+[
+  { _id: ObjectId("64e438c83137af98397e5241"), name: 'pqr', age: 21 },
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5244"), name: 'lmn', age: 21 },
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e57e656aeedc269ddec6c4"), name: 'abc' },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc', age: 20 }
+]
+shubhodeep> db.shubhodeep.find({$not:[{name : "pqr" , age : 20}]})
+MongoServerError: unknown top level operator: $not. If you are trying to negate an entire expression, use $nor.
+shubhodeep> db.shubhodeep.find({age:{$in{20,23}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:28)
+
+> 1 | db.shubhodeep.find({age:{$in{20,23}})
+    |                             ^
+  2 |
+
+shubhodeep> db.shubhodeep.find({age:{$in:[20,23]})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:37)
+
+> 1 | db.shubhodeep.find({age:{$in:[20,23]})
+    |                                      ^
+  2 |
+
+shubhodeep> db.shubhodeep.find({age:{$in:[20,23]}})
+[
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc', age: 20 }
+]
+shubhodeep> db.shubhodeep.find({age:{$eq:[20,23]}})
+
+shubhodeep> db.shubhodeep.find({age:{$eq:[20]}})
+
+shubhodeep> db.shubhodeep.find({age:{$eq:20}})
+[
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc', age: 20 }
+]
+shubhodeep> db.shubhodeep.find({age:{$lte:20}})
+[
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc', age: 20 }
+]
+shubhodeep> db.shubhodeep.find({age:{$lt:20}})
+
+shubhodeep> db.shubhodeep.find({age:{$lt:30}})
+[
+  { _id: ObjectId("64e438c83137af98397e5241"), name: 'pqr', age: 21 },
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5244"), name: 'lmn', age: 21 },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc', age: 20 }
+]
+shubhodeep> db.shubhodeep.find({age:{$gt:30}})
+
+shubhodeep> db.shubhodeep.find({age:{$not:{$lt:20}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:39)
+
+> 1 | db.shubhodeep.find({age:{$not:{$lt:20}})
+    |                                        ^
+  2 |
+
+shubhodeep> db.shubhodeep.find({age:{$not:{$lt:20}}})
+[
+  { _id: ObjectId("64e438c83137af98397e5241"), name: 'pqr', age: 21 },
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5244"), name: 'lmn', age: 21 },
+  {
+    _id: ObjectId("64e43c553137af98397e5245"),
+    name: 'def',
+    baka: 'True'
+  },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e57e656aeedc269ddec6c4"), name: 'abc' },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc', age: 20 }
+]
+shubhodeep> db.shubhodeep.find({age:{$in:[20,23]}})
+[
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz', age: 20 },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi', age: 20 },
+  {
+    _id: ObjectId("64e43c553137af98397e5246"),
+    name: 'ghi',
+    age: 20,
+    present: 'False'
+  },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc', age: 20 }
+]
+shubhodeep> db.shubhodeep.find({age:{$in:[20,23]}},{name:true})
+[
+  { _id: ObjectId("64e43a853137af98397e5242"), name: 'xyz' },
+  { _id: ObjectId("64e43a853137af98397e5243"), name: 'ghi' },
+  { _id: ObjectId("64e43c553137af98397e5246"), name: 'ghi' },
+  { _id: ObjectId("64e58041a45a4deb61e902f3"), name: 'abc' }
